@@ -13,8 +13,9 @@ public class TestUtils {
         for (int i = 0 ; i < size; i++){
             Employee employee = new Employee();
             employee.setId(i + 1);
-            employee.setEmployee_name("name_" + employee.getId());
-            employee.setEmployee_salary(i*1000);
+            employee.setEmployeeName("name_" + employee.getId());
+            employee.setEmployeeSalary(i*1000);
+            employee.setEmployeeAge(i*10);
 
             employeeList.add(employee);
         }

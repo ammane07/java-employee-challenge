@@ -1,8 +1,7 @@
 package com.example.rqchallenge.employees;
 
+import com.example.rqchallenge.employees.model.DeleteResponse;
 import com.example.rqchallenge.employees.model.Employee;
-import com.example.rqchallenge.employees.model.EmployeesResponse;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
@@ -16,5 +15,5 @@ public interface IEmployeeService {
     Integer getHighestSalaryOfEmployees();
     List<String> getTopTenHighestEarningEmployeeNames();
     Employee createEmployee(@RequestBody Map<String, Object> employeeInput);
-    String deleteEmployeeById(String id);
+    DeleteResponse deleteEmployeeById(String id);
 }

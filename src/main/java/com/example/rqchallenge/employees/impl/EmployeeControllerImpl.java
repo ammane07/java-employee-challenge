@@ -2,6 +2,7 @@ package com.example.rqchallenge.employees.impl;
 
 import com.example.rqchallenge.employees.IEmployeeController;
 import com.example.rqchallenge.employees.IEmployeeService;
+import com.example.rqchallenge.employees.model.DeleteResponse;
 import com.example.rqchallenge.employees.model.Employee;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -47,7 +48,7 @@ public class EmployeeControllerImpl implements IEmployeeController {
 
         List<Employee> employeeList = employeeService.getEmployeesByNameSearch(searchString);
         if (employeeList != null && employeeList.size() > 0) {
-            return new ResponseEntity<>(employeeList, HttpStatus.OK);
+            return new ResponseEntity<>(employeeList, HttpStatus.FOUND);
         }
 
         LOGGER.info("Got blank employee list for searchString : " + searchString);
@@ -70,7 +71,7 @@ public class EmployeeControllerImpl implements IEmployeeController {
             return ResponseEntity.notFound().build();
         }
         LOGGER.trace("Returning getEmployeeById() method");
-        return new ResponseEntity<>(employee, HttpStatus.OK);
+        return new ResponseEntity<>(employee, HttpStatus.FOUND);
     }
 
     @Override
@@ -112,14 +113,14 @@ public class EmployeeControllerImpl implements IEmployeeController {
             return new ResponseEntity<>(employee, HttpStatus.CREATED);
         } else {
             LOGGER.error("Invalid request to create employee. Please enter name, age and salary fields for employee");
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Please enter name, age and salary fields for employee");
+            return ResponseEntity.badRequest().body("Please enter name, age and salary fields for employee");
         }
     }
 
     @Override
-    public ResponseEntity<String> deleteEmployeeById(String id) {
+    public ResponseEntity<DeleteResponse> deleteEmployeeById(String id) {
         LOGGER.trace("deleteEmployeeById() method called with id : " + id);
-        String response = employeeService.deleteEmployeeById(id);
+        DeleteResponse response = employeeService.deleteEmployeeById(id);
 
         LOGGER.trace("Returning deleteEmployeeById() method");
         return new ResponseEntity<>(response, HttpStatus.OK);

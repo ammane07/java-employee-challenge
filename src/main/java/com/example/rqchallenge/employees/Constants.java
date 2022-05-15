@@ -6,4 +6,5 @@ public class Constants {
     public static final String GET_EMPLOYEE_BY_ID = API + "employee/%s";
     public static final String CREATE_EMPLOYEE = API + "create";
     public static final String DELETE_EMPLOYEE = API + "delete/%s";
+    public static final String SUCCESS_STATUS = "success";
 }

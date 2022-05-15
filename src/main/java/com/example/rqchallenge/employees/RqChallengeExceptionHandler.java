@@ -32,7 +32,7 @@ public class RqChallengeExceptionHandler {
 
     @org.springframework.web.bind.annotation.ExceptionHandler
             (value = { Exception.class })
-    protected ResponseEntity<Object> genericExceptionHandler (RuntimeException ex, WebRequest request) {
+    protected ResponseEntity<Object> genericExceptionHandler (Exception ex, WebRequest request) {
         final String message = Optional.of(ex.getMessage()).orElse(ex.getClass().getSimpleName());
         Map<String, Object> exceptionDetails = getExceptionDetails(message);
         return new ResponseEntity<>(exceptionDetails, HttpStatus.INTERNAL_SERVER_ERROR);

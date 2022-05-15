@@ -1,20 +1,18 @@
 package com.example.rqchallenge.employees;
 
+import com.example.rqchallenge.employees.model.DeleteResponse;
 import com.example.rqchallenge.employees.model.Employee;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 @RestController
-@Validated
-@RequestMapping("/api/rqchallange")
+@RequestMapping("/rqchallange/api/employees")
 public interface IEmployeeController {
 
     @GetMapping()
@@ -36,6 +34,6 @@ public interface IEmployeeController {
     ResponseEntity<Employee> createEmployee(@RequestBody Map<String, Object> employeeInput);
 
     @DeleteMapping("/{id}")
-    ResponseEntity<String> deleteEmployeeById(@PathVariable String id);
+    ResponseEntity<DeleteResponse> deleteEmployeeById(@PathVariable String id);
 
 }
